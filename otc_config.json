@@ -1,0 +1,246 @@
+{
+  "download_items": {
+    "daily_close_no1430": {
+      "name": "上櫃股票每日收盤行情(不含定價)",
+      "url": "https://www.tpex.org.tw/zh-tw/mainboard/trading/info/mi-pricing.html",
+      "wait_element": "table.table-default",
+      "download_text": "另存 CSV",
+      "needs_query": true,
+      "retry_count": 3,
+      "skiprows": 3
+    },
+    "margin_transactions": {
+      "name": "上櫃股票融資融券餘額",
+      "url": "https://www.tpex.org.tw/zh-tw/mainboard/trading/margin-trading/transactions.html",
+      "wait_element": "table.table-default",
+      "download_text": "下載 CSV 檔(UTF-8)",
+      "needs_query": false,
+      "retry_count": 3,
+      "skiprows": 2
+    },
+    "institutional_detail": {
+      "name": "三大法人買賣明細資訊",
+      "url": "https://www.tpex.org.tw/zh-tw/mainboard/trading/major-institutional/detail/day.html",
+      "select_element": {
+        "name": "sect",
+        "value": "AL"
+      },
+      "wait_element": "table.table-default",
+      "download_text": "另存 CSV",
+      "needs_query": false,
+      "retry_count": 3,
+      "skiprows": 1
+    },
+    "day_trading": {
+      "name": "現股當沖交易統計資訊",
+      "url": "https://www.tpex.org.tw/zh-tw/mainboard/trading/day-trading/statistics/day.html",
+      "wait_element": "table.table-default",
+      "download_text": "另存 CSV",
+      "needs_query": false,
+      "retry_count": 3,
+      "skiprows": 5
+    },
+    "sec_trading": {
+      "name": "各券商當日營業金額統計表(含等價、零股、盤後、鉅額交易)",
+      "url": "https://www.tpex.org.tw/zh-tw/mainboard/trading/info/sec-trading.html",
+      "wait_element": "table.table-default",
+      "download_text": "下載 CSV",
+      "needs_query": false,
+      "retry_count": 3,
+      "skiprows": 2
+    },
+    "investment_trust_buy": {
+      "name": "投信買賣超彙總表（買超）",
+      "url": "https://www.tpex.org.tw/zh-tw/mainboard/trading/major-institutional/domestic-inst/day.html",
+      "select_element": {
+        "name": "searchType",
+        "value": "buy"
+      },
+      "wait_element": "table.table-default",
+      "download_text": "另存 CSV",
+      "needs_query": false,
+      "retry_count": 3,
+      "skiprows": 1
+    },
+    "investment_trust_sell": {
+      "name": "投信買賣超彙總表（賣超）",
+      "url": "https://www.tpex.org.tw/zh-tw/mainboard/trading/major-institutional/domestic-inst/day.html",
+      "select_element": {
+        "name": "searchType",
+        "value": "sell"
+      },
+      "wait_element": "table.table-default",
+      "download_text": "另存 CSV",
+      "needs_query": false,
+      "retry_count": 3,
+      "skiprows": 1
+    },
+    "highlight": {
+      "name": "上櫃股票信用交易融資融券餘額概況表",
+      "url": "https://www.tpex.org.tw/zh-tw/mainboard/trading/margin-trading/highlight.html",
+      "wait_element": "table.table-default",
+      "download_text": "另存 CSV",
+      "needs_query": false,
+      "retry_count": 3,
+      "skiprows": 2
+    },
+    "sbl": {
+      "name": "信用額度總量管制餘額表",
+      "url": "https://www.tpex.org.tw/zh-tw/mainboard/trading/margin-trading/sbl.html",
+      "wait_element": "table.table-default",
+      "download_text": "另存 CSV",
+      "needs_query": false,
+      "retry_count": 3,
+      "skiprows": 2
+    },
+    "exempted": {
+      "name": "平盤下得融(借)券賣出之證券名單",
+      "url": "https://www.tpex.org.tw/zh-tw/mainboard/trading/margin-trading/exempted.html",
+      "wait_element": "table.table-default",
+      "download_text": "另存 CSV",
+      "needs_query": false,
+      "retry_count": 3,
+      "skiprows": 2
+    }
+  },
+  "settings": {
+    "max_retry_days": 7,
+    "download_timeout": 30,
+    "page_load_timeout": 15,
+    "implicit_wait": 10,
+    "headless": false,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  },
+  "directories": {
+    "raw_dir": "otc_raw",
+    "clean_dir": "otc_cleaned",
+    "log_dir": "logs"
+  },
+  "column_mappings": {
+    "daily_close_no1430": {
+      "代號": "stock_id",
+      "名稱": "name",
+      "收盤": "close",
+      "漲跌": "change",
+      "開盤": "open",
+      "最高": "high",
+      "最低": "low",
+      "均價": "avg_price",
+      "成交股數": "volume",
+      "成交金額(元)": "amount",
+      "成交筆數": "trades",
+      "最後買價": "last_bid_price",
+      "最後買量(千股)": "last_bid_vol",
+      "最後賣價": "last_ask_price",
+      "最後賣量(千股)": "last_ask_vol",
+      "發行股數": "issued_shares",
+      "次日參考價": "next_ref_price",
+      "次日漲停價": "next_up_limit",
+      "次日跌停價": "next_down_limit"
+    },
+    "institutional_detail": {
+      "代號": "stock_id",
+      "名稱": "name",
+      "外資及陸資(不含外資自營商)-買賣超股數": "ii_foreign_net",
+      "外資自營商-買賣超股數": "ii_foreign_self_net",
+      "投信-買賣超股數": "ii_trust_net",
+      "自營商(自行買賣)-買賣超股數": "ii_dealer_self_net",
+      "自營商(避險)-買賣超股數": "ii_dealer_hedge_net",
+      "合計-買賣超股數": "ii_total_net"
+    },
+    "sec_trading": {
+      "排名": "rank",
+      "前日排名": "prev_rank",
+      "券商": "broker",
+      "名稱": "name",
+      "成交金額(仟元)": "amount_thousands"
+    },
+    "day_trading": {
+      "證券代號": "stock_id",
+      "證券名稱": "name",
+      "暫停現股賣出後現款買進當沖註記": "flag",
+      "當日沖銷交易成交股數": "dt_volume",
+      "當日沖銷交易買進成交金額": "dt_buy_amount",
+      "當日沖銷交易賣出成交金額": "dt_sell_amount",
+      "當日沖銷證券商買賣總額": "dt_total_amount",
+      "當沖率(%)": "dt_rate"
+    },
+    "highlight": {
+      "排名": "rank",
+      "代號": "stock_id",
+      "名稱": "name",
+      "月均融資餘額(元)": "hg_margin_balance",
+      "市場佔有率": "hg_margin_share",
+      "月均融券餘額(元)": "hg_short_balance",
+      "券資比": "hg_ratio"
+    },
+    "sbl": {
+      "股票代號": "stock_id",
+      "股票名稱": "name",
+      "融券前日餘額": "owz_short_prev_balance",
+      "融券賣出": "owz_short_sell",
+      "融券買進": "owz_short_buy",
+      "融券現券": "owz_short_spot",
+      "融券當日餘額": "owz_short_today_balance",
+      "融券限額": "owz_short_limit",
+      "借券前日餘額": "owz_borrow_prev_balance",
+      "借券當日賣出": "owz_borrow_sell",
+      "借券當日還券": "owz_borrow_return",
+      "借券當日調整數額": "owz_borrow_adj",
+      "借券當日餘額": "owz_borrow_today_balance",
+      "借券次一營業日可借券賣出限額": "owz_borrow_next_limit",
+      "備註": "remark"
+    },
+    "margin_transactions": {
+      "代號": "stock_id",
+      "名稱": "name",
+      "前資餘額(張)": "mt_prev_balance",
+      "資買": "mt_buy",
+      "資賣": "mt_sell",
+      "現償": "mt_pay",
+      "資餘額": "mt_balance",
+      "資屬證金": "mt_cash",
+      "資使用率(%)": "mt_usage_rate",
+      "資限額": "mt_limit",
+      "前券餘額(張)": "st_prev_balance",
+      "券賣": "st_sell",
+      "券買": "st_buy",
+      "券償": "st_pay",
+      "券餘額": "st_balance",
+      "券屬證金": "st_cash",
+      "券使用率(%)": "st_usage_rate",
+      "券限額": "st_limit",
+      "資券相抵(張)": "mt_st_offset",
+      "備註": "remark"
+    },
+    "investment_trust": {
+      "排行": "rank",
+      "代號": "stock_id",
+      "名稱": "name",
+      "買進": "it_buy_shares",
+      "賣出": "it_sell_shares",
+      "買賣超": "it_diff_shares",
+      "買進金額": "it_buy_amount",
+      "賣出金額": "it_sell_amount",
+      "買賣超金額": "it_diff_amount"
+    }
+  },
+  "validation_rules": {
+    "stock_id": {
+      "pattern": "^\\d{4}$",
+      "required": true,
+      "description": "股票代號必須為4位數字"
+    },
+    "price_fields": {
+      "fields": ["close", "open", "high", "low", "avg_price"],
+      "min_value": 0,
+      "max_value": 10000,
+      "description": "價格欄位範圍檢查"
+    },
+    "volume_fields": {
+      "fields": ["volume", "amount", "trades"],
+      "min_value": 0,
+      "description": "成交量相關欄位不能為負數"
+    }
+  }
+}

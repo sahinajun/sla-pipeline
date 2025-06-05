@@ -1,0 +1,7 @@
+selenium>=4.15.0
+webdriver-manager>=4.0.1
+pandas>=2.0.0
+urllib3>=1.26.0
+holidays>=0.34
+psutil>=5.9.0
+openpyxl>=3.1.0
