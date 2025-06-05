@@ -1,0 +1,29 @@
+name: Auto Push Updated CSV
+
+on:
+  workflow_run:
+    workflows: ["Daily Data Update"]
+    types:
+      - completed
+
+jobs:
+  push-updated-csv:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'CodexBot'
+          git config --global user.email 'bot@example.com'
+
+      - name: Detect and Commit CSV Changes
+        run: |
+          git add raw/*.csv || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Auto-commit: updated CSV after successful data update"
+            git push
+          else
+            echo "No CSV changes to commit."
